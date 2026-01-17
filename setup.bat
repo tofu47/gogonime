@@ -35,7 +35,7 @@ echo.
 
 REM Install dependencies
 echo [*] Installing dependencies...
-call npm install
+call npm install --progress=true --verbose
 if errorlevel 1 (
     echo [ERROR] Failed to install dependencies
     pause
@@ -51,5 +51,9 @@ echo Next steps:
 echo   - Start dev server: npm run dev
 echo   - Build for production: npm run build
 echo   - Preview build: npm run preview
+echo.
+echo Local Network Access:
+echo   After running 'npm run dev', find your local IP with: ipconfig
+echo   Then access from other machines at: http://^<YOUR_LOCAL_IP^>:5173
 echo.
 pause
