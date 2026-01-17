@@ -16,6 +16,37 @@ A modern React + TypeScript frontend for streaming anime from the GoGoAnime API.
 
 ## Quick Start
 
+### Option 1: Automated Setup (Recommended)
+
+**Windows:**
+```bash
+./setup.bat
+```
+
+**Mac/Linux:**
+```bash
+chmod +x setup.sh
+./setup.sh
+```
+
+### Option 2: Manual Setup
+
+```bash
+# Install dependencies
+npm install
+
+# Start development server
+npm run dev
+
+# Build for production
+npm run build
+
+# Preview production build
+npm run preview
+```
+
+### Option 3: Using Make
+
 ```bash
 # View all available commands
 make help
@@ -32,6 +63,13 @@ make build
 # Preview production build
 make preview
 ```
+
+## Requirements
+
+- **Node.js** (v16 or higher)
+- **npm** (v7 or higher)
+
+If you don't have Node.js installed, download it from: https://nodejs.org/
 
 ## Project Structure
 
