@@ -26,7 +26,7 @@ interface CacheEntry<T> {
 
 const detailCache = new Map<string, CacheEntry<any>>()
 const videoCache = new Map<string, CacheEntry<any>>()
-const CACHE_DURATION_1HOUR = 60 * 60 * 1000 // 1 hour
+const CACHE_DURATION_30DAYS = 30 * 24 * 60 * 60 * 1000 // 30 days
 
 // localStorage key prefix
 const STORAGE_PREFIX = 'gogoanime_'
@@ -38,8 +38,8 @@ const getFromStorage = <T>(key: string): T | null => {
     if (!item) return null
     const parsed = JSON.parse(item)
     const now = Date.now()
-    // Check if cache expired (1 hour)
-    if (now - parsed.timestamp > CACHE_DURATION_1HOUR) {
+    // Check if cache expired (30 days)
+    if (now - parsed.timestamp > CACHE_DURATION_30DAYS) {
       localStorage.removeItem(STORAGE_PREFIX + key)
       return null
     }
@@ -279,7 +279,7 @@ export const apiService = {
     // Check in-memory cache first
     const cacheKey = `${chapterUrlId}_${reso}`
     const cached = videoCache.get(cacheKey)
-    if (cached && (Date.now() - cached.timestamp) < CACHE_DURATION_1HOUR) {
+    if (cached && (Date.now() - cached.timestamp) < CACHE_DURATION_30DAYS) {
       console.log('💾 Loading video from memory cache:', cacheKey)
       return cached.data
     }
@@ -329,7 +329,7 @@ export const apiService = {
   getAnimeDetail: async (urlId: string): Promise<{ data: AnimeDetail[] }> => {
     // Check in-memory cache first
     const cached = detailCache.get(urlId)
-    if (cached && (Date.now() - cached.timestamp) < CACHE_DURATION_1HOUR) {
+    if (cached && (Date.now() - cached.timestamp) < CACHE_DURATION_30DAYS) {
       console.log('💾 Loading detail from memory cache:', urlId)
       return cached.data
     }
