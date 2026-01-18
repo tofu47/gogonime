@@ -8,5 +8,8 @@ export default defineConfig({
     port: 5173,
     host: '0.0.0.0',
     open: true,
+    allowedHosts: [
+      'anime.gogonime.live'
+    ]
   },
 })
